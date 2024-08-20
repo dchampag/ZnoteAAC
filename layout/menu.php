@@ -57,8 +57,17 @@
 		<!-- Menu right aligned -->
 		<div class="pull-right">
 			<ul>
-				<li><a href="sub.php?page=loginhelp" class="modIcon loginBtn"><i class="fa fa-lock"></i><i class="fa fa-unlock"></i> Login</a> </li>
-				<li><a href="register.php"><i class="fa fa-key"></i> Register</a> </li>
+				<?php if (user_logged_in() === true) { ?>
+					<li><a href="myaccount.php"><i class="fa fa-user-circle"></i> Welcome, <?php if ($config['ServerEngine'] !== 'OTHIRE') echo $user_data['name']; else echo $user_data['id']; ?></a>
+						<ul>
+							<li><a href="myaccount.php"><i class="fa fa-user-circle"></i> Account</a> </li>
+							<li><a href='logout.php' class="modIcon loginBtn"><i class="fa fa-unlock"></i><i class="fa fa-lock"></i> Logout</a> </li>
+						</ul>
+					</li>
+				<?php } else { ?>
+					<li><a href="sub.php?page=loginhelp" class="modIcon loginBtn"><i class="fa fa-lock"></i><i class="fa fa-unlock"></i> Login</a> </li>
+					<li><a href="register.php"><i class="fa fa-key"></i> Register</a> </li>
+				<?php } ?>
 			</ul>
 		</div>
 	</div>
